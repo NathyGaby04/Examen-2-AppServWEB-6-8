@@ -45,34 +45,25 @@ namespace ExamenMultas_ITM.Clases
                     {
                         if (Actualizar)
                         {
-                            //Se borra el original
                             File.Delete(Path.Combine(root, fileName));
-                            //Se crea el nuevo archivo con el mismo nombre
                             File.Move(file.LocalFileName, Path.Combine(root, fileName));
-                            //No se debe agregar en la base de datos, porque ya existe
                         }
                         else
                         {
-                            //No se pueden tener archivos con el mismo nombre. Es decir, las imágenes tienen que tener nombres únicos
-                            //Si el archivo existe, se borra el archivo temporal que se subió
                             File.Delete(file.LocalFileName);
-                            //Se da una respuesta de error
                             RptaError += "El archivo: " + fileName + " ya existe";
-                            //return request.CreateErrorResponse(HttpStatusCode.Conflict, "El archivo ya existe");
+
                         }
                     }
                     else
                     {
                         Archivos.Add(fileName);
-                        //Se renombra el archivo
                         File.Move(file.LocalFileName, Path.Combine(root, fileName));
                     }
                 }
                 if (Archivos.Count > 0)
                 {
-                    //Envía a grabar la información de las imágenes
                     string Respuesta = ProcesarArchivos(Archivos);
-                    //Se da una respuesta de éxito
                     return request.CreateResponse(HttpStatusCode.OK, "Archivo subido con éxito");
                 }
                 else
@@ -124,11 +115,36 @@ namespace ExamenMultas_ITM.Clases
             {
                 case "INFRACCION":
                     ClFotoInfraccion fotoInfraccion = new ClFotoInfraccion();
-                    fotoInfraccion.idInfraccion = Datos;//Debe venir la información que se procesa en la base de datos, para nuestro caso, el código del producto
+                    fotoInfraccion.idInfraccion = Datos;
                     fotoInfraccion.Archivos = Archivos;
                     return fotoInfraccion.GrabarImagenes();
                 default:
                     return "Proceso no válido";
+            }
+        }
+
+        public HttpResponseMessage Eliminar(string NombreArchivo)
+        {
+            try
+            {
+                string Ruta = HttpContext.Current.Server.MapPath("~/Archivos");
+                string Archivo = Path.Combine(Ruta, NombreArchivo);
+
+                if (File.Exists(Archivo))
+                {
+                    File.Delete(Archivo);
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+                    return response;
+                }
+                else
+                {
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Conflict);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Error al eliminar el archivo: " + ex.Message);
             }
         }
     }

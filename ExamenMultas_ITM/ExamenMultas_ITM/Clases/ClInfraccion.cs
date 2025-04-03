@@ -54,7 +54,7 @@ namespace ExamenMultas_ITM.Clases
         {
             return dBExamen.Infraccions.FirstOrDefault(e => e.idFotoMulta == idFotoMulta);
         }
-        public List<Infraccion> ConsultarMarca(string placa)
+        public List<Infraccion> ConsultarXPlaca(string placa)
         {
             return dBExamen.Infraccions
                 .Where(e => e.PlacaVehiculo == placa)
@@ -79,6 +79,29 @@ namespace ExamenMultas_ITM.Clases
             {
                 return "No se pudo eliminar el Infraccion: " + ex.Message;
             }
+        }
+
+        public IQueryable ConsultarImagenesXInfraccion(string Placa)
+        {
+            return from I in dBExamen.Set<Infraccion>()
+                   join V in dBExamen.Set<Vehiculo>()
+                   on I.PlacaVehiculo equals V.Placa
+                   join FI in dBExamen.Set<FotoInfraccion>()
+                   on I.idFotoMulta equals FI.idInfraccion
+                   where I.PlacaVehiculo == Placa
+                   orderby I.FechaInfraccion
+                   select new
+                   {
+                       idVehiculo = V.Placa,
+                       TipoVehiculo = V.TipoVehiculo,
+                       Marca = V.Marca,
+                       Color = V.Color,
+                       idInfraccion = I.idFotoMulta,
+                       FechaInfraccion = I.FechaInfraccion,
+                       Infraccion = I.TipoInfraccion,
+                       idImagen = FI.idFoto,
+                       Imagen = FI.NombreFoto
+                   };
         }
     }
 }

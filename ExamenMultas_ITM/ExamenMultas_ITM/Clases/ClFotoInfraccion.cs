@@ -37,5 +37,30 @@ namespace ExamenMultas_ITM.Clases
                 return ex.Message;
             }
         }
+        public FotoInfraccion Consultar(int idFoto)
+        {
+            return dBExamen.FotoInfraccions.FirstOrDefault(e => e.idFoto == idFoto);
+        }
+        public string Eliminar(int idFoto)
+        {
+            try
+            {
+                FotoInfraccion fotoinfrc = Consultar(idFoto);
+                if (fotoinfrc == null)
+                {
+                    return "El Infraccion con el id ingresado no existe, por lo tanto no se puede eliminar";
+                }
+
+                dBExamen.FotoInfraccions.Remove(fotoinfrc);
+                dBExamen.SaveChanges();
+
+
+                return "Se eliminó la foto de la Infraccion correctamente";
+            }
+            catch (Exception ex)
+            {
+                return "No se pudo eliminar la Foto de la Infraccion: " + ex.Message;
+            }
+        }
     }
 }

@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "fcff8639-3076-4ea3-af11-4fe00b1cdb32",
+		"name": "ExamenMultas_ITM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43028144"
+	},
+	"item": [
+		{
+			"name": "Infracciones",
+			"item": [
+				{
+					"name": "Insertar Infracción",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PlacaVehiculo\": \"ABC123\",\r\n    \"FechaInfraccion\": \"02-06-2025\",\r\n    \"TipoInfraccion\": \"Conducción Bajo sustancias Psicoactivas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_multas}}Insertar",
+							"host": [
+								"{{base_url_multas}}Insertar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Vehiculo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TipoVehiculo\": \"Deportivo\",\r\n    \"Marca\": \"Porsche\",\r\n    \"Color\": \"Magenta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_multas}}Insertar",
+							"host": [
+								"{{base_url_multas}}Insertar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultarTodos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_multas}}ConsultarTodos",
+							"host": [
+								"{{base_url_multas}}ConsultarTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_multas}}ConsultarTodos",
+							"host": [
+								"{{base_url_multas}}ConsultarTodos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultarVehiculoXPlaca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_multas}}ConsultarVehiculoXPlaca?Placa=ABC123",
+							"host": [
+								"{{base_url_multas}}ConsultarVehiculoXPlaca"
+							],
+							"query": [
+								{
+									"key": "Placa",
+									"value": "ABC123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultarXPlaca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_multas}}ConsultarXPlaca?Placa=ABC123",
+							"host": [
+								"{{base_url_multas}}ConsultarXPlaca"
+							],
+							"query": [
+								{
+									"key": "Placa",
+									"value": "ABC123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PlacaVehiculo\": \"Plaquita\",\r\n    \"FechaInfraccion\": \"02-06-2026\",\r\n    \"TipoInfraccion\": \"Conducción Bajo sustancias Psicoactivas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_multas}}Actualizar",
+							"host": [
+								"{{base_url_multas}}Actualizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_multas}}Eliminar?CodigoInfraccion=4",
+							"host": [
+								"{{base_url_multas}}Eliminar"
+							],
+							"query": [
+								{
+									"key": "CodigoInfraccion",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UploadFiles",
+			"item": [
+				{
+					"name": "GrabarArchivo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url_uploadfiles}}GrabarArchivo?Datos=3&Proceso=INFRACCION",
+							"host": [
+								"{{base_url_uploadfiles}}GrabarArchivo"
+							],
+							"query": [
+								{
+									"key": "Datos",
+									"value": "3"
+								},
+								{
+									"key": "Proceso",
+									"value": "INFRACCION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Foto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_uploadfiles}}get?NombreImagen=6854590.jpg",
+							"host": [
+								"{{base_url_uploadfiles}}get"
+							],
+							"query": [
+								{
+									"key": "NombreImagen",
+									"value": "6854590.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Archivo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_uploadfiles}}EliminarArchivo?idFoto=1",
+							"host": [
+								"{{base_url_uploadfiles}}EliminarArchivo"
+							],
+							"query": [
+								{
+									"key": "idFoto",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"type": "file",
+									"src": "/C:/Users/campe/Downloads/imagen2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url_uploadfiles}}ActualizarArchivo?Datos=2&Proceso=INFRACCION",
+							"host": [
+								"{{base_url_uploadfiles}}ActualizarArchivo"
+							],
+							"query": [
+								{
+									"key": "Datos",
+									"value": "2"
+								},
+								{
+									"key": "Proceso",
+									"value": "INFRACCION"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url_multas",
+			"value": "https://localhost:44307/api/Infracciones/",
+			"type": "string"
+		},
+		{
+			"key": "base_url_uploadfiles",
+			"value": "https://localhost:44307/api/UploadFiles/",
+			"type": "string"
+		}
+	]
+}
